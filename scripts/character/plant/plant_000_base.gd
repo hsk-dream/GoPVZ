@@ -257,8 +257,10 @@ func gat_save_game_data_plant()->Dictionary:
 
 ## 读档植物数据
 func load_game_data_plant(save_game_data_plant:Dictionary):
-	is_sleeping = save_game_data_plant.get("is_sleeping", true)
-	if not is_sleeping:
-		sleep_component.no_sleep()
+	## 原本是睡觉，存档不睡觉
+	if is_sleeping and not save_game_data_plant.get("is_sleeping", true):
+		is_sleeping = false
+		sleep_component.end_sleep()
+
 	hp_component.curr_hp = save_game_data_plant["curr_hp"]
 	hp_component.signal_hp_loss.emit(hp_component.curr_hp, true)

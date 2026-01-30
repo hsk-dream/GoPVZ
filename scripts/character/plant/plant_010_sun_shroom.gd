@@ -57,3 +57,18 @@ func character_death():
 	if is_zombie_mode:
 		create_sun_component._on_character_death()
 	super()
+
+## 获取植物存档数据
+func gat_save_game_data_plant()->Dictionary:
+	var save_game_data_plant:Dictionary = super()
+	save_game_data_plant["is_grow"] = is_grow
+
+	return save_game_data_plant
+
+## 读档植物数据
+func load_game_data_plant(save_game_data_plant:Dictionary):
+	super(save_game_data_plant)
+	is_grow = save_game_data_plant.get("is_grow", false)
+	if is_grow:
+		grow_timer.stop()
+		create_sun_component.change_sun_value(norm_sun_value)
