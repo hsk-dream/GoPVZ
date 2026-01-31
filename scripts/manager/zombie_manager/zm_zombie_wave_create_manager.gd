@@ -45,7 +45,8 @@ const zombie_power = {
 }
 
 ## 创建 zombie_weights 字典，存储初始权重,普僵权重会修改，
-const zombie_weights = {
+var zombie_weights:Dictionary = zombie_weights_ori.duplicate_deep()
+const zombie_weights_ori = {
 	Global.ZombieType.Z001Norm: 4000,			# 普僵权重
 	#Global.ZombieType.Z002Flag: 0,			# 旗帜权重
 	Global.ZombieType.Z003Cone: 4000,			# 路障权重
@@ -217,16 +218,26 @@ func update_curr_zombie_weight_upper_limit(wave:int):
 			curr_zombie_weight_upper_limit += zombie_weights[zombie_type]
 	else:
 		pass
+## 更新权重到达上限后最后一次已经更新
+var is_update_weight_on_limit:=false
 
 ## 更新僵尸权重
 func _update_weights(wave: int):
-	if wave < 25 and wave >= 5:
-		if Global.ZombieType.Z001Norm in zombie_manager.zombie_refresh_types:
-			var norm_weight = 4000 - (wave - 4) * 180
-			zombie_choose_random_pool.update_item_weight(Global.ZombieType.Z001Norm, norm_weight, false)
+	if wave >= 5:
+		if wave >= 25:
+			if is_update_weight_on_limit:
+				return
+			is_update_weight_on_limit = true
+			print("更新权重")
+			wave = 25
 
+		var norm_weight = 4000 - (wave - 5) * 180
+		zombie_weights[Global.ZombieType.Z001Norm] = norm_weight
+		if Global.ZombieType.Z001Norm in zombie_manager.zombie_refresh_types:
+			zombie_choose_random_pool.update_item_weight(Global.ZombieType.Z001Norm, norm_weight, false)
+		var cone_weight = 4000 - (wave - 5) * 150
+		zombie_weights[Global.ZombieType.Z003Cone] = cone_weight
 		if Global.ZombieType.Z003Cone in zombie_manager.zombie_refresh_types:
-			var cone_weight = 4000 - (wave - 4) * 150
 			zombie_choose_random_pool.update_item_weight(Global.ZombieType.Z003Cone, cone_weight, false)
 
 		zombie_choose_random_pool.rebuild_alias_table()
