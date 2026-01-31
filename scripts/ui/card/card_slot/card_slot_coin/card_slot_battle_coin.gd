@@ -32,7 +32,7 @@ func _ready() -> void:
 	Global.main_game.p_yeti_run = curr_p
 	Global.coin_value_change.connect(func():curr_coin_value.text = str(Global.coin_value))
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if curr_wave_card <= 0 and not is_end_wave:
 		for z:Zombie020Yeti in Global.main_game.zombie_manager.all_zombies_1d:
 			if not z.is_run_end and not z.is_death:
@@ -63,7 +63,7 @@ func init_card_slot_battle(max_choosed_card_num:int):
 func main_game_refresh_card():
 	for i in range(curr_cards.size()):
 		var card:Card = curr_cards[i]
-		card.judge_sun_enough(Global.coin_value/10)
+		card.judge_sun_enough(int(Global.coin_value/10.0))
 		card.signal_card_use_end.connect(card_use_end.bind(card))
 		card.set_shortcut((i+1)%10)
 	judge_disappear_add_card_bar()
@@ -74,7 +74,7 @@ func card_use_end(card:Card):
 	Global.coin_value = Global.coin_value - card.sun_cost * 10
 	#card.card_cool()
 	curr_coin_value.text = str(Global.coin_value)
-	card.judge_sun_enough(Global.coin_value/10)
+	card.judge_sun_enough(int(Global.coin_value/10.0))
 	curr_wave_card -= 1
 	if curr_wave_card == 0:
 		card.set_card_disable()

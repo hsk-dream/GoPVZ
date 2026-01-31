@@ -78,6 +78,9 @@ func judge_disappear_add_card_bar():
 			if curr_cards.size() < cards_placeholder.size():
 				for i in range(curr_cards.size(), cards_placeholder.size()):
 					cards_placeholder[i].visible = false
+		else:
+			for i in range(cards_placeholder.size()):
+				cards_placeholder[i].visible = true
 	else:
 		for i in range(cards_placeholder.size()):
 			cards_placeholder[i].visible = true

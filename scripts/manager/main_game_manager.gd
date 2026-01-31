@@ -358,9 +358,9 @@ func main_game_start():
 	## 等待1秒红字出现
 	await get_tree().create_timer(1.0).timeout
 	await ui_remind_word.ready_set_plant()
-	card_manager.card_slot_update_main_game()
 	## 主游戏进程阶段
 	main_game_progress = E_MainGameProgress.MAIN_GAME
+	card_manager.card_slot_update_main_game()
 
 	## 红字结束后一秒修改bgm
 	await get_tree().create_timer(1.0).timeout
