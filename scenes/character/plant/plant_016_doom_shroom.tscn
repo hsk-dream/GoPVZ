@@ -1589,14 +1589,14 @@ node2d_detect_in_slope = [NodePath("HurtBoxComponent/HurtBoxDetection"), NodePat
 position = Vector2(-39, -72)
 
 [node name="DoomShroom_body" type="Sprite2D" parent="Body/BodyCorrect" index="0"]
-position = Vector2(16.26663, 42.466797)
-scale = Vector2(0.83366853, 0.7513309)
+position = Vector2(16.282207, 42.35338)
+scale = Vector2(0.8333007, 0.7523434)
 texture = ExtResource("2_55ivw")
 centered = false
 
 [node name="DoomShroom_head1" type="Sprite2D" parent="Body/BodyCorrect" index="1"]
-position = Vector2(-1.2000551, 7.5668507)
-scale = Vector2(0.8263348, 0.7623315)
+position = Vector2(-1.2355874, 7.4889684)
+scale = Vector2(0.8257117, 0.76311034)
 texture = ExtResource("3_oiu6n")
 centered = false
 
@@ -1613,7 +1613,7 @@ visible = false
 centered = false
 
 [node name="SleepComponent" parent="." index="4" node_paths=PackedStringArray("sleep_influence_components")]
-sleep_influence_components = [NodePath("../BombComponent")]
+sleep_influence_components = [NodePath("../BlinkComponent"), NodePath("../BombComponent")]
 
 [node name="BlinkComponent" parent="." index="5"]
 is_enable_default = false

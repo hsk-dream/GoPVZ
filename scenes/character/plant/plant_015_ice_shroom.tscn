@@ -116,8 +116,8 @@ node_no_change_direction = [NodePath("HpComponent"), NodePath("SleepComponent"),
 position = Vector2(-41, -69)
 
 [node name="Anim_face" type="Sprite2D" parent="Body/BodyCorrect" index="0"]
-position = Vector2(13.471491, 39.114037)
-scale = Vector2(0.80714035, 0.77614903)
+position = Vector2(13.547198, 38.764008)
+scale = Vector2(0.804584, 0.7841918)
 texture = ExtResource("2_37t62")
 centered = false
 
@@ -133,16 +133,19 @@ centered = false
 
 [node name="Anim_blink" type="Sprite2D" parent="Body/BodyCorrect" index="3"]
 visible = false
-position = Vector2(27.21839, 38.8889)
+position = Vector2(27.245428, 38.62753)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_663tl")
 centered = false
 
 [node name="IceShroom_head" type="Sprite2D" parent="Body/BodyCorrect" index="4"]
-position = Vector2(-1.4, 1.6425474)
-scale = Vector2(0.8, 0.80742985)
+position = Vector2(-1.4, 1.5)
+scale = Vector2(0.8, 0.8061121)
 texture = ExtResource("5_236rb")
 centered = false
+
+[node name="SleepComponent" parent="." index="4" node_paths=PackedStringArray("sleep_influence_components")]
+sleep_influence_components = [NodePath("../BlinkComponent"), NodePath("../BombComponent")]
 
 [node name="BlinkComponent" parent="." index="5"]
 all_blink_body_change = Array[ExtResource("7_wi4d4")]([SubResource("Resource_ohyhk")])
